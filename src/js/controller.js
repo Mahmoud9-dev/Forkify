@@ -125,7 +125,7 @@ const showRecipe = async function (recipeId) {
           .join('')}
       
         <div class="recipe__ingredients">
-          <h2 class="heading--2">Recipe ingredients</h2>
+          <h2 class="headirng--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
             <li class="recipe__ingredient">
               <svg class="recipe__icon">
