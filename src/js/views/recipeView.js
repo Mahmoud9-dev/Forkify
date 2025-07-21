@@ -1,4 +1,4 @@
-import icons from './icons.js';
+import icons from '../icons.js';
 
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
