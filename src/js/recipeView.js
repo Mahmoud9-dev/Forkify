@@ -1,3 +1,5 @@
+import icons from './icons.js';
+
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
@@ -12,6 +14,17 @@ class RecipeView {
   #clear() {
     this.#parentElement.innerHTML = '';
   }
+
+  renderSpinner = function (parentEl) {
+    const markup = `
+    <div class="spinner">
+      <svg>
+        <use href="${icons}#icon-loader"></use> 
+        </svg>
+    </div>`;
+    this.#parentElement.innerHTML = '';
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  };
 
   renderSpinner = function (parentEl) {
     const markup = `

@@ -1,4 +1,3 @@
-import icons from './icons.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -17,39 +16,14 @@ const timeout = function (s) {
 
 ///////////////////////////////////////
 
-const renderSpinner = function (parentEl) {
-  const markup = `
-  <div class="spinner">
-    <svg>
-      <use href="${icons}#icon-loader"></use> 
-      </svg>
-  </div>`;
-  parentEl.innerHTML = '';
-  parentEl.insertAdjacentHTML('afterbegin', markup);
-};
-
 const showRecipe = async function (recipeId) {
   try {
+    const id = window.location.hash.slice(1);
+    console.log(id);
+
+    if (!id) return;
     // 1) Loading Recipe
     renderSpinner(recipeContainer);
-    const res = await fetch(`https://forkify-api.jonas.io/recipes/${recipeId}`);
-    const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-    console.log(res, data);
-
-    let { recipe } = data.data;
-
-    recipe = {
-      id: recipe.id,
-      title: recipe.title,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time,
-      ingredients: recipe.ingredients,
-    };
 
     // 2) Rendering Recipe
 
