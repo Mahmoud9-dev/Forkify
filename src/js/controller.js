@@ -37,7 +37,10 @@ const showRecipe = async function (recipeId) {
 
 const controlSearchResults = async function () {
   try {
-    await model.loadSearchResults('pizza');
+    const query = searchView.getQuery();
+    if (!query) return;
+
+    await model.loadSearchResults('query');
   } catch (err) {
     console.log(err);
   }
@@ -47,5 +50,6 @@ controlSearchResults();
 
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  searchView.addHandlerRender(controlSearchResults);
 };
 init();
