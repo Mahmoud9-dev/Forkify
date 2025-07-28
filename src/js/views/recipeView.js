@@ -3,6 +3,8 @@ import icons from '../icons.js';
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
+  #errorMessage = 'We could not found that recipe. Please try again.';
+  #message = '';
 
   render(data) {
     this.#data = data;
@@ -17,17 +19,6 @@ class RecipeView {
 
   renderSpinner() {
     const markup = `
-    <div class="spinner">
-      <svg>
-        <use href="${icons}#icon-loader"></use> 
-        </svg>
-    </div>`;
-    this.#parentElement.innerHTML = '';
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  };
-
-  renderSpinner = function (parentEl) {
-    const markup = `
       <div class="spinner">
         <svg>
           <use href = "${icons}#icon-loader"></use>
@@ -37,12 +28,27 @@ class RecipeView {
     this.#parentElement.insertAdjacentElementHTML('afterbegin', markup);
   }
 
-  renderError(message) {
+  renderError(message = this.#errorMessage) {
     const markup = `
       <div class="error">
         <div>
           <svg>
             <use href = "${icons}#icon-alert-triangle"></use>
+           </svg>
+        </div>
+        <p>${message}</p>
+      </div>
+      `;
+    this.#clear();
+    this.#parentElement.insertAdjacentElementHTML('afterbegin', markup);
+  }
+
+  renderMessage(message = this.#message) {
+    const markup = `
+      <div class="message">
+        <div>
+          <svg>
+            <use href = "${icons}#icon-smile"></use>
            </svg>
         </div>
         <p>${message}</p>

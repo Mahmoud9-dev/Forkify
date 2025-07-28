@@ -29,8 +29,18 @@ const showRecipe = async function (recipeId) {
     await model.loadRecipe(id);
 
     // 2) Rendering Recipe
-    recipeView.render(model.state.recipe);
+    RecipeView.render(model.state.recipe);
   } catch (err) {
-    recipeView.renderError(`${err} 💥💥💥`);
+    RecipeView.renderError(`${err} 💥💥💥`);
   }
 };
+
+const controlSearchResults = async function () {
+  try {
+    await model.loadSearchResults('pizza');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+controlSearchResults();
